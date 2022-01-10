@@ -1,6 +1,6 @@
 import com.krish.hms.model.Management
 
-fun main(args: Array<String>) {
+fun main() {
     println("Welcome")
 
     val management = Management()
