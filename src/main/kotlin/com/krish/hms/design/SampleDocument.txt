@@ -1,0 +1,77 @@
+﻿                                        Hospital Management System
+
+
+Goals:
+        This system aims at managing the doctors and the patients. Whenever a patient comes in
+        he/she needs to be treated. This system handles doctor assignment, case handling
+        and storing the case.
+
+
+
+
+Functionalities: 
+
+
+1. Add doctor
+2. Add patient
+3. Handle case
+4. List doctors
+5. List patients
+6. Create case
+7. Generate Id
+8. Run
+
+
+
+
+1. Add doctor 
+1.1 Get person details
+1.2 Get doctor details
+1.3 Generate doctor Id
+1.3 Doctor added
+
+
+2. Add patient
+2.1 Get SSN(Aadhar)
+2.2 Check whether the patient is new or existing one
+2.3 if new get person details and generate patient Id
+2.4 Get patient’s issue
+2.5 Identify the department based on the issue 
+2.6 Assign doctor accordingly
+2.7 If new create case
+
+
+        2.5.1 Based on the human body part and problem, identify the department
+
+
+        2.6.1 Based on the department and  availability assign the doctor
+
+
+3. Handle case
+3.1 Get case id
+3.2 Get consultation
+3.3 Update case
+
+
+4. List doctors
+4.1 Select all, by id, by department
+4.2 Display accordingly
+
+
+5. List patients
+5.1 Select all, by id, by date
+5.2 Display accordingly
+
+
+6. Create case
+6.1 Get patient Id, doctor Id, issue, generate case Id
+6.2 Case created
+
+
+7. Generate Id 
+7.1 Generate Id accordingly
+
+
+8. Run 
+8.1 Display User(terminal) performable action(excludes Case creation, Id Generation)
+8.2 Get user input and perform actions accordingly
