@@ -1,3 +1,4 @@
+
 package com.krish.hms.model
 
 import java.time.LocalDate
@@ -5,11 +6,10 @@ import java.time.LocalDate
 sealed class Person(
     var name: String,
     val age: Int,
-    val gender: String,
+    val gender: Gender,
     val dob: LocalDate,
     var address: String,
     var contact: String,
-    val bloodGroup: String,
-    val Ssn: String,
-) {
-}
+    val bloodGroup: BloodGroup,
+    val Ssn: String // correct it
+    )

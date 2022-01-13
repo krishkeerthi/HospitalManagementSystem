@@ -1,0 +1,3 @@
+ConsultationId|CaseId|DoctorId|Issue|Department|VisitDate|Assessment
+CO7b6434ff41bf4c6faa8ee56903f7408b|CA68e6214fef93423bbbe324724cbd0ad8|DO7f149ea08b574f659fe53e196095188b|problem in eye|2|04-10-2021|Vision is normal
+COb6f1dd0da43d426f9b0ad8ccffc38e6f|CA07c7a28513a24fcdbfd3b89b515d9ad1|PA11575c334fb348d59afd918dc7efcfca|problem in ear|1|15-10-2020|Ear infection

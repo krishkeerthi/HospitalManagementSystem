@@ -1,0 +1,146 @@
+﻿
+
+                                        Hospital Management System
+
+
+Enter
+1. Add doctor
+2. Add patient
+3. Handle consultation
+4. List doctors
+5. List patients
+6. List cases
+
+    1. Add doctor
+    Enter ssn: (if Exist print "Doctor already exists" and returns)
+
+        Enter name:
+        Enter age:
+        Enter 1. Male 2. Female 3. Others:
+        Enter dob: ("dd-mm-yyyy")
+        Enter contact:
+        Enter 1. A+ 2. A- 3. B+ 4. B- 5. O+ 6. O- 7. AB+ 8. AB-
+        Enter ssn:
+        Enter 1. Dermatology 2. ENT 3. Ophthalmology
+        Enter years of experience:
+
+            (Doctor added successfully)
+
+    2. Add patient
+    Enter ssn: (if Exist goes to "Case" section)
+
+        Enter name:
+        Enter age:
+        Enter 1. Male 2. Female 3. Others:
+        Enter dob: ("dd-mm-yyyy")
+        Enter contact:
+        Enter 1. A+ 2. A- 3. B+ 4. B- 5. O+ 6. O- 7. AB+ 8. AB-
+        Enter ssn:
+
+            (Patient added successfully)
+
+    Case:    Enter yes or no for new case: (if yes directly ask for issue)
+
+                Enter case id:
+
+    Issue:            Enter issue:
+
+                            (Doctor assigned for you :))
+
+
+    3. Handle consultation
+    Enter doctor id:
+    (Who is going to handle consultation)
+
+    Consultation id  |  Issue
+            (First consultation from the queue)
+
+            Enter Advice:
+            (Doctors Advice)
+
+                Enter yes or no for medicine: (if no the consultation finishes)
+
+                    Enter Medicine name:
+                    Enter 1. Tablet 2. Drop 3. Syrup 4. Inhaler:
+                    Enter count:
+                    Enter Days:
+                    Enter yes or no for morning:
+                    Enter yes or no for afternoon:
+                    Enter yes or no for evening:
+
+                Enter yes or no for medicine:
+                    .
+                    .
+                    .
+
+
+    4. List doctors
+    Enter 1. All 2. By id 3. By department
+
+        option 1:
+            Name  |  Age  |  Department  | ....
+                    (All Doctors)
+
+            option 2:
+            Enter id:
+
+            Name  |  Age  |  Department  | ....
+                   (Doctor by id)
+
+            option 3:
+            Enter 1. Dermatology 2. ENT 3. Ophthalmology:
+
+            Name  |  Age  |  Department  | ...
+                   (Available doctors by department)
+
+    5. List patients
+    Enter 1. All 2. By id 3. By name
+
+        option 1:
+        Name  |  Age  |  Contact  | ....
+                (All patients)
+
+        option 2:
+        Enter id:
+
+        Name  |  Age  |  Contact  | ....
+               (patient by id)
+
+        option 3:
+        Enter name:
+
+        Name  |  Age  |  Contact  | ...
+               (Available patients by name)
+
+
+
+
+    6. List cases
+    Enter case id:
+
+    output:
+    Case details:
+    Case Id   |  Patient Id   | First visit  | Last visit
+    1.
+
+        Consultations detail:
+        Consultation id   |  Doctor id   |  Department   | Issue
+        1.      (First consultation and its medications )
+
+            Medicine detail:
+            Medicine name  |  Medicine type  |  count   | days
+            1.
+            2.
+            3.
+
+        2.      (Second consultation and its medications )
+
+        .
+        .
+        .
+
+
+
+
+
+

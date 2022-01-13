@@ -1,0 +1,52 @@
+
+
+					                    Hospital Management System
+
+
+Abstract
+
+Hospital currently uses a manual system for the management and maintenance of critical information. The current systems require numerous
+paper forms to store information. Forms are often lost in transit between departments thus requiring a comprehensive auditing process to
+ensure that no vital information is lost. This information typically involves patient personal information and medical history, staff
+information, and so on. All of this information must be managed in an efficient and cost-wise fashion so that an institution's resources
+may be effectively utilized. For that HMS is introduced and it will automate the management of the hospital making it more efficient and
+error-free.
+
+Background information
+
+The hospital management system is a computerized system designed and programmed to deal with day-to-day operations taking place. The program
+can look after patient admission, case creation, case consultation, doctor admission, handling consultation, records maintenance. The purpose
+of the project is to computerize the Front Office Management of the Hospital to develop software that
+is user-friendly, simple, fast, and cost-effective. It deals with the collection of patients' information, diagnosis details, etc.
+
+Project Description
+
+Hospital Management System is powerful, flexible, and easy to use and is designed and developed to deliver real conceivable benefits to
+hospitals, doctors, and patients. Hospital Management System is designed for multi-specialty hospitals, to cover a wide range of hospital
+administration and management processes. Hospital Management System enables you to develop your organization and improve its effectiveness.
+Managing the key processes efficiently is critical to the success of the hospital helps you manage your processes.
+
+It maintains three levels of users:- 
+ • Management Level 
+ • Doctor Level 
+ • Patient-Level
+
+Project Scope 
+ • The system will be used to get the information from the patients, create a case, and provide consultation for them. 
+ • It also assigns doctors efficiently to reduce the waiting time of patients.
+ • The system enables doctors to treat patients in a first come first serve approach.
+ • the system intends to reduce waiting time and increase the number of patients that can be treated accurately.
+
+The Software includes
+ • Maintaining Patient details. 
+ • Maintaining Doctor details. 
+ • Maintaining Case details. 
+ • Providing Prescription and advice.
+ • Report generation. 
+
+Conclusion
+
+ • The system was designed in such a way that future modifications can be done easily. 
+ • Updating information becomes so easier.  
+ • The System has adequate scope for modification in the future if it is necessary.
+
