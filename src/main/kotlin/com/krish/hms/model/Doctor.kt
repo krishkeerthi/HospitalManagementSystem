@@ -12,7 +12,7 @@ class Doctor(
     address: String,
     contact: String,
     bloodGroup: BloodGroup,
-    Ssn: String,
+    Ssn: Int,
     val doctorId: String,
     val department: Department,
     var yearsOfExperience: Int,
@@ -26,7 +26,7 @@ class Doctor(
 
         while(enterField("Yes or No for medicine").isYes()){
             val name = enterField("Medicine Name")
-            val type = (enterField("1. Tablet 2. Drops 3. Syrup 4. Inhaler").getInt() - 1).getMedicineType()
+            val type = enterField("1. Tablet 2. Drops 3. Syrup 4. Inhaler").getInt().minus(1).getMedicineType()
             val count = enterField("Count of usage").getInt()
             val days = enterField("No of days to continue").getInt()
             val morning = enterField("Yes ro No for morning").isYes()

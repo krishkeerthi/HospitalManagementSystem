@@ -58,20 +58,20 @@ fun Int.getMedicineType() : MedicineType{
 }
 
 fun enterField(field: String) : String{
-    println("Enter $field")
+    println("Enter $field:")
     return readLine() ?: ""
 }
 
 fun readFile(fileName: String) : List<String>{
-    val file = "src/main/kotlin/com/krish/hms/data/$fileName.txt"
+    val file = "src/main/kotlin/com/krish/hms/data/$fileName"
     return File(file).readLines().drop(1)
 }
 
 fun writeFile(fileName: String, line: String){
-    val file = "src/main/kotlin/com/krish/hms/data/$fileName.txt"
+    val file = "src/main/kotlin/com/krish/hms/data/$fileName"
     File(file).appendText(line)
 }
 
 fun String.isYes(): Boolean = this.lowercase() == "yes"
 
-fun getToday(): String = LocalDate.now().format(formatter)
+fun getToday(): LocalDate = LocalDate.now()

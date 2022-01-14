@@ -11,7 +11,7 @@ class Patient(
     address: String,
     contact: String,
     bloodGroup: BloodGroup,
-    Ssn: String,
+    Ssn: Int,
     val patientId: String,
     val firstRegistered: LocalDate,
     var lastRegistered: LocalDate

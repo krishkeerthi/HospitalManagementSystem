@@ -11,5 +11,5 @@ sealed class Person(
     var address: String,
     var contact: String,
     val bloodGroup: BloodGroup,
-    val Ssn: String // correct it
+    val Ssn: Int
     )
