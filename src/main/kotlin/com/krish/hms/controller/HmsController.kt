@@ -63,8 +63,11 @@ class HmsController {
             management.existingCase(id, ssn)
         }
 
+        val inTime = enterTime("patient in") ?: getDefaultTime().
+        also { println("Invalid time entered, so default time(12:00pm) is assigned") }
+
         val issue = enterField("issue")
-        management.assignDoctor(issue, caseId)
+        management.assignDoctor(issue, caseId, inTime)
     }
 
     private fun getPerson(idHolder: IdHolder, ssn: Int){
@@ -80,7 +83,13 @@ class HmsController {
             IdHolder.DOCTOR ->{
                 val department = enterField("1. Dermatology 2. ENT 3. Ophthalmology").getInt().minus(1).getDepartment()
                 val experience = enterField("years of experience").getInt()
-                management.addDoctor(name, age, gender, dob, address, contact, bloodGroup, ssn, department, experience)
+
+                val startTime = enterTime("start") ?: getDefaultTime().
+                        also { println("Invalid time entered, so default time(12:00pm) is assigned") }
+                val endTime = enterTime("end") ?: getDefaultTime().
+                        also { println("Invalid time entered, so default time(12:00pm) is assigned") }
+
+                management.addDoctor(name, age, gender, dob, address, contact, bloodGroup, ssn, department, experience, startTime, endTime)
             }
             IdHolder.PATIENT ->{
                management.addPatient(name, age, gender, dob, address, contact, bloodGroup, ssn)

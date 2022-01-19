@@ -5,6 +5,7 @@ import com.krish.hms.helper.*
 import com.krish.hms.model.*
 import java.io.File
 import java.time.LocalDate
+import java.time.LocalTime
 import java.util.*
 
 class HospitalFiles: IdGenerator by ZIdGen() {
@@ -26,10 +27,12 @@ class HospitalFiles: IdGenerator by ZIdGen() {
     }
 
     fun addDoctor(name: String, age: Int, gender: Gender, dob: LocalDate, address: String,
-                  contact: String, bloodGroup: BloodGroup, ssn: Int, department: Department, experience: Int){
+                  contact: String, bloodGroup: BloodGroup, ssn: Int, department: Department,
+                  experience: Int, startTime: LocalTime, endTime: LocalTime){
 
         val doctorId = generateId(IdHolder.DOCTOR)
-        val doctor = Doctor(name, age, gender, dob, address, contact, bloodGroup, ssn, doctorId, department, experience)
+        val doctor = Doctor(name, age, gender, dob, address, contact, bloodGroup, ssn, doctorId, department,
+            experience, startTime, endTime)
 
         doctors[doctorId] = doctor
 
@@ -60,32 +63,20 @@ class HospitalFiles: IdGenerator by ZIdGen() {
         }
     }
 
-    fun assignDoctor(issue: String, caseId: String, department: Department) {
+    fun getDepartmentDoctors(department: Department): List<Doctor>{
+        return doctors.values.filter { it.department == department }
+    }
 
-        val departmentDoctors = doctors.values.filter { it.department == department }
+    fun getPendingConsultations(doctorId: String): Int{
+        return doctorsPendingConsultations[doctorId]?.size ?: 0
+    }
 
-        if(departmentDoctors.isEmpty())
-            return println("No doctors available")
-
-        // find shortest available time
-        var shortestAvailableTime = Int.MAX_VALUE
-        var assignedDoctorId = departmentDoctors[0].doctorId
-
-        for(doctor in departmentDoctors){
-            val pendingCases = doctorsPendingConsultations[doctor.doctorId]?.size ?: 0
-            val availableTime = pendingCases * 15  // 15 minutes is considered as a time for handling case
-
-            if(availableTime < shortestAvailableTime){
-                shortestAvailableTime = availableTime
-                assignedDoctorId = doctor.doctorId
-            }
-        }
-
+    fun manageConsultationsAndDoctors(doctorId: String, issue: String, caseId: String, department: Department){
         val consultationId = generateId(IdHolder.CONSULTATION)
-        consultations[consultationId] = Consultation(consultationId, caseId, assignedDoctorId, issue, department, getToday(), "")
+        consultations[consultationId] = Consultation(consultationId, caseId, doctorId, issue, department, getToday(), "")
 
-        addOrCreate(doctorsConsultations, assignedDoctorId, consultationId)
-        addOrCreateQueue(doctorsPendingConsultations, assignedDoctorId, consultationId)
+        addOrCreate(doctorsConsultations, doctorId, consultationId)
+        addOrCreateQueue(doctorsPendingConsultations, doctorId, consultationId)
         addOrCreate(casesConsultations, caseId, consultationId)
     }
 
@@ -186,7 +177,8 @@ class HospitalFiles: IdGenerator by ZIdGen() {
         for(line in doctorFile){
             val fields = line.split('|')
             val doctor = Doctor(fields[1], fields[2].getInt(), fields[3].getInt().getGender(), LocalDate.parse(fields[4]), fields[5], fields[6],
-                fields[7].getInt().getBloodGroup(), fields[8].getInt(), fields[0], fields[9].getInt().getDepartment(), fields[10].getInt())
+                fields[7].getInt().getBloodGroup(), fields[8].getInt(), fields[0], fields[9].getInt().getDepartment(), fields[10].getInt(),
+                LocalTime.parse(fields[11]), LocalTime.parse(fields[12]))
 
             doctors[fields[0]] = doctor
         }

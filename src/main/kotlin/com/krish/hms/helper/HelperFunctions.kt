@@ -1,11 +1,10 @@
 
 package com.krish.hms.helper
 
-import com.krish.hms.model.BloodGroup
-import com.krish.hms.model.Department
-import com.krish.hms.model.Gender
-import com.krish.hms.model.MedicineType
+import com.krish.hms.model.*
+import java.time.DateTimeException
 import java.time.LocalDate
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
 val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
@@ -20,6 +19,14 @@ fun Int.getGender() : Gender {
         1 -> Gender.FEMALE
         2 -> Gender.OTHERS
         else -> Gender.OTHERS
+    }
+}
+
+fun Int.getMeridian() : Meridian {
+    return when(this){
+        0 -> Meridian.AM
+        1 -> Meridian.PM
+        else -> Meridian.PM
     }
 }
 
@@ -61,9 +68,36 @@ fun enterField(field: String) : String{
     return readLine() ?: ""
 }
 
+fun enterTime(field: String): LocalTime? {
+    val hour = enterField("$field hour").getInt()
+    val minutes = enterField("$field minutes").getInt()
+    val meridian = enterField("1. AM 2. PM").getInt().minus(1).getMeridian()
+    return getTime(hour, minutes, meridian)
+}
 
 fun String.isYes(): Boolean = this.lowercase() == "yes"
 
 fun getToday(): LocalDate = LocalDate.now()
 
 fun readOption() = readLine()?.toIntOrNull() ?: 0
+
+fun getTime(hour: Int, minute: Int, meridian: Meridian): LocalTime?{
+    try{
+        if(meridian == Meridian.AM){
+            if(hour == 12)
+                return LocalTime.of(0, minute, 0)
+            return LocalTime.of(hour, minute, 0)
+        }
+        else{
+            if(hour == 12)
+                return LocalTime.of(hour, minute, 0)
+            return LocalTime.of(12 + hour, minute, 0)
+        }
+    }
+    catch (e: DateTimeException){
+        return null
+    }
+}
+
+fun getDefaultTime(): LocalTime = LocalTime.of(12, 0, 0)
+

@@ -44,3 +44,8 @@ enum class MedicineType{
     SYRUP,
     INHALER,
 }
+
+enum class Meridian{
+    AM,
+    PM,
+}

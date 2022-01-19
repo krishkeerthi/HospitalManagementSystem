@@ -3,6 +3,7 @@ package com.krish.hms.model
 
 import com.krish.hms.model.filesystem.HospitalFiles
 import java.time.LocalDate
+import java.time.LocalTime
 
 class Management : IdGenerator by ZIdGen(){
 
@@ -10,9 +11,11 @@ class Management : IdGenerator by ZIdGen(){
     private val repository = HospitalFiles()
 
     fun addDoctor(name: String, age: Int, gender: Gender, dob: LocalDate, address: String,
-                          contact: String, bloodGroup: BloodGroup, ssn: Int, department: Department, experience: Int){ // Adds new doctor
+                  contact: String, bloodGroup: BloodGroup, ssn: Int, department: Department,
+                  experience: Int, startTime: LocalTime, endTime: LocalTime){ // Adds new doctor
 
-        repository.addDoctor(name, age, gender, dob, address, contact, bloodGroup, ssn, department, experience)
+        repository.addDoctor(name, age, gender, dob, address, contact, bloodGroup, ssn, department,
+            experience, startTime, endTime)
     }
 
     fun addPatient(name: String, age: Int, gender: Gender, dob: LocalDate, address: String,
@@ -34,8 +37,36 @@ class Management : IdGenerator by ZIdGen(){
 
     }
 
-    fun assignDoctor(issue: String, caseId: String){
-        repository.assignDoctor(issue, caseId, findDepartment(issue))
+    fun assignDoctor(issue: String, caseId: String, time: LocalTime){
+        val department = findDepartment(issue)
+        val departmentDoctors = repository.getDepartmentDoctors(department)
+
+        if(departmentDoctors.isEmpty())
+            return println("No doctors available")
+        else{
+            var minNoOfConsultations = Int.MAX_VALUE
+            var assignedDoctorId = ""
+
+            for(doctor in departmentDoctors){
+                val pendingConsultations = repository.getPendingConsultations(doctor.doctorId)
+                val consultationsHandlingTime = pendingConsultations * 15  // 15 minutes is considered as an average time for handling case
+                val (consultationsHours, consultationsMinutes) = getHoursAndMinutes(consultationsHandlingTime)
+
+                if(time.plusHours(consultationsHours.toLong()).plusMinutes(consultationsMinutes.toLong()).
+                    isBefore(doctor.endTime.minusMinutes(14))){
+
+                    if(pendingConsultations < minNoOfConsultations){
+                        minNoOfConsultations = pendingConsultations
+                        assignedDoctorId = doctor.doctorId
+                    }
+                }
+            }
+
+            if(assignedDoctorId != "")
+                repository.manageConsultationsAndDoctors(assignedDoctorId, issue, caseId, department)
+            else
+                println("No doctors available")
+        }
     }
 
     private fun findDepartment(issue: String) : Department{
@@ -123,5 +154,10 @@ class Management : IdGenerator by ZIdGen(){
         return repository.checkExistence(idHolder, ssn)
     }
 
+    private fun getHoursAndMinutes(totalMinutes: Int): Pair<Int, Int>{
+        val hours = totalMinutes/60
+        val minutes = totalMinutes%60
+        return Pair(hours, minutes)
+    }
 }
 

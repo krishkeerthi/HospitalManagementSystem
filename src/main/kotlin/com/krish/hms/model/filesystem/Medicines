@@ -1,3 +1,2 @@
 MedicineId|ConsultationId|MedicineName|MedicineType|Count|Days|Morning|Afternoon|Evening
-MDb08922b5b6984c62a3f0a5d2775688e1|COc04bef2550804886a62be690d5522f84|benzo|TABLET|1|2|true|false|true
-MD1803e1457ebe4b758d4cc20de11c1ae9|CO41bf3dc4515b476492aa23ca7bedeff7|lacto|TABLET|1|2|true|true|true
+MDfc5d7980fff14a4c978cf8387b3e1284|CObf78d824d6074e4c9e2ac927352a6fd2|cipa|SYRUP|2|2|true|false|trueMD01e0f7d7324748048e290f0928530191|CO88c523780e92400bb43c894edf5db3d6|dusting powder|DROPS|2|2|true|false|true
