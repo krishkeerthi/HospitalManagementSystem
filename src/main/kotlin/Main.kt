@@ -1,11 +1,12 @@
 
+import com.krish.hms.controller.HmsController
 import com.krish.hms.model.Management
 
 fun main() {
     println("Welcome")
 
-    val management = Management()
-    management.start()
+    val controller = HmsController()
+    controller.start()
 
     println("Thank you")
 }

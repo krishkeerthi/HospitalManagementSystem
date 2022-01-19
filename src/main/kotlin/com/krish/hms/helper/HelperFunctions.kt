@@ -1,11 +1,10 @@
 
-package com.krish.hms.model.helper
+package com.krish.hms.helper
 
 import com.krish.hms.model.BloodGroup
 import com.krish.hms.model.Department
 import com.krish.hms.model.Gender
 import com.krish.hms.model.MedicineType
-import java.io.File
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -62,16 +61,9 @@ fun enterField(field: String) : String{
     return readLine() ?: ""
 }
 
-fun readFile(fileName: String) : List<String>{
-    val file = "src/main/kotlin/com/krish/hms/data/$fileName"
-    return File(file).readLines().drop(1)
-}
-
-fun writeFile(fileName: String, line: String){
-    val file = "src/main/kotlin/com/krish/hms/data/$fileName"
-    File(file).appendText(line)
-}
 
 fun String.isYes(): Boolean = this.lowercase() == "yes"
 
 fun getToday(): LocalDate = LocalDate.now()
+
+fun readOption() = readLine()?.toIntOrNull() ?: 0

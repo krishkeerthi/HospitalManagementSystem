@@ -1,0 +1,3 @@
+MedicineId|ConsultationId|MedicineName|MedicineType|Count|Days|Morning|Afternoon|Evening
+MDb08922b5b6984c62a3f0a5d2775688e1|COc04bef2550804886a62be690d5522f84|benzo|TABLET|1|2|true|false|true
+MD1803e1457ebe4b758d4cc20de11c1ae9|CO41bf3dc4515b476492aa23ca7bedeff7|lacto|TABLET|1|2|true|true|true

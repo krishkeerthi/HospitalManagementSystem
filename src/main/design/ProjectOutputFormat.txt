@@ -26,6 +26,7 @@ Enter
 
             (Doctor added successfully)
 
+
     2. Add patient
     Enter ssn: (if Exist goes to "Case" section)
 
@@ -93,6 +94,7 @@ Enter
             Name  |  Age  |  Department  | ...
                    (Available doctors by department)
 
+
     5. List patients
     Enter 1. All 2. By id 3. By name
 
@@ -111,8 +113,6 @@ Enter
 
         Name  |  Age  |  Contact  | ...
                (Available patients by name)
-
-
 
 
     6. List cases
