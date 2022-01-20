@@ -5,13 +5,8 @@ enum class Department {
     DERMATOLOGY,
     ENT,
     OPHTHALMOLOGY,
+    GENERAL,
 }
-
-//enum class Timing {
-//    MORNING,
-//    AFTERNOON,
-//    EVENING,
-//}
 
 enum class Gender {
     MALE,
@@ -43,6 +38,7 @@ enum class MedicineType{
     DROPS,
     SYRUP,
     INHALER,
+    CREAM,
 }
 
 enum class Meridian{

@@ -22,8 +22,6 @@ class Doctor(
 
     ) : Person(name, age, gender, dob, address, contact, bloodGroup, Ssn){
 
-
-
     override fun toString(): String {
         return "$doctorId|$name|$age|$gender|$dob|$address|$contact|$bloodGroup|$Ssn|$department|" +
                 "$yearsOfExperience|$startTime|$endTime\n"

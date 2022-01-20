@@ -67,21 +67,23 @@ class HmsController {
         also { println("Invalid time entered, so default time(12:00pm) is assigned") }
 
         val issue = enterField("issue")
-        management.assignDoctor(issue, caseId, inTime)
+        management.assignDoctor(issue, caseId, inTime, ssn)
     }
 
     private fun getPerson(idHolder: IdHolder, ssn: Int){
         val name = enterField("Name")
         val age = enterField("Age").getInt()
         val gender = enterField("1. Male 2. Female 3. Others").getInt().minus(1).getGender()
-        val dob = enterField("Date of Birth(dd-mm-yyyy)").getDate()
+        val dob = enterField("Date of Birth(dd-mm-yyyy)").getDate() ?: getToday().also {
+            println("Invalid Date entered, so today's date is assigned")
+        }
         val address = enterField("Address")
         val contact = enterField("Contact Number")
         val bloodGroup = enterField("1. A+ 2. A- 3. B+ 4. B- 5. O+ 6. O- 7. AB+ 8. AB-").getInt().minus(1).getBloodGroup()
 
         when(idHolder){
             IdHolder.DOCTOR ->{
-                val department = enterField("1. Dermatology 2. ENT 3. Ophthalmology").getInt().minus(1).getDepartment()
+                val department = enterField("1. Dermatology 2. ENT 3. Ophthalmology 4. General").getInt().minus(1).getDepartment()
                 val experience = enterField("years of experience").getInt()
 
                 val startTime = enterTime("start") ?: getDefaultTime().
@@ -111,7 +113,7 @@ class HmsController {
 
         while(enterField("Yes or No for medicine").isYes()){
             val name = enterField("Medicine Name")
-            val type = enterField("1. Tablet 2. Drops 3. Syrup 4. Inhaler").getInt().minus(1).getMedicineType()
+            val type = enterField("1. Tablet 2. Drops 3. Syrup 4. Inhaler 5. Cream").getInt().minus(1).getMedicineType()
             val count = enterField("Count of usage").getInt()
             val days = enterField("No of days to continue").getInt()
             val morning = enterField("Yes ro No for morning").isYes()

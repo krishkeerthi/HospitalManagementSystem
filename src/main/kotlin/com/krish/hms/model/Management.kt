@@ -5,7 +5,7 @@ import com.krish.hms.model.filesystem.HospitalFiles
 import java.time.LocalDate
 import java.time.LocalTime
 
-class Management : IdGenerator by ZIdGen(){
+class Management{
 
     // Repository can be file, database, remote ..
     private val repository = HospitalFiles()
@@ -24,7 +24,7 @@ class Management : IdGenerator by ZIdGen(){
         repository.addPatient(name, age, gender, dob, address, contact, bloodGroup, ssn)
     }
 
-    fun createCase(ssn: Int): String{
+    fun createCase(ssn: Int): String{ // Returns case id
 
         return repository.generateCase(repository.getPatientId(ssn))
     }
@@ -37,7 +37,7 @@ class Management : IdGenerator by ZIdGen(){
 
     }
 
-    fun assignDoctor(issue: String, caseId: String, time: LocalTime){
+    fun assignDoctor(issue: String, caseId: String, time: LocalTime, ssn: Int){
         val department = findDepartment(issue)
         val departmentDoctors = repository.getDepartmentDoctors(department)
 
@@ -63,7 +63,7 @@ class Management : IdGenerator by ZIdGen(){
             }
 
             if(assignedDoctorId != "")
-                repository.manageConsultationsAndDoctors(assignedDoctorId, issue, caseId, department)
+                repository.manageConsultationsAndDoctors(assignedDoctorId, issue, caseId, department, ssn)
             else
                 println("No doctors available")
         }
@@ -72,12 +72,12 @@ class Management : IdGenerator by ZIdGen(){
     private fun findDepartment(issue: String) : Department{
         issue.split(" ").forEach { word ->
             when(word){
-                in mutableListOf("skin", "rashes", "spots") -> return Department.DERMATOLOGY.also { println(it.name)}
+                in mutableListOf("skin", "rashes", "spot") -> return Department.DERMATOLOGY.also { println(it.name)}
                 in mutableListOf("eye", "vision", "sight") -> return Department.OPHTHALMOLOGY.also { println(it.name)}
                 in mutableListOf("ear", "nose", "throat") -> return Department.ENT.also { println(it.name)}
             }
         }
-        return Department.ENT.also { println(it.name)}
+        return Department.GENERAL.also { println(it.name)}
     }
 
     fun isConsultationAvailable(doctorId: String): Boolean{

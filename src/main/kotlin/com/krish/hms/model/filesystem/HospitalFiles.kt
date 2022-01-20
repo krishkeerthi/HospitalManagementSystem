@@ -71,9 +71,17 @@ class HospitalFiles: IdGenerator by ZIdGen() {
         return doctorsPendingConsultations[doctorId]?.size ?: 0
     }
 
-    fun manageConsultationsAndDoctors(doctorId: String, issue: String, caseId: String, department: Department){
+    fun manageConsultationsAndDoctors(doctorId: String, issue: String, caseId: String, department: Department, ssn: Int){
+        //Create consultation
         val consultationId = generateId(IdHolder.CONSULTATION)
         consultations[consultationId] = Consultation(consultationId, caseId, doctorId, issue, department, getToday(), "")
+
+        //Update case last visit date
+        cases[caseId]!!.lastVisit = getToday()
+
+        //Update patient last visit date
+        val patientId = getPatientId(ssn)
+        patients[patientId]!!.lastRegistered = getToday()
 
         addOrCreate(doctorsConsultations, doctorId, consultationId)
         addOrCreateQueue(doctorsPendingConsultations, doctorId, consultationId)

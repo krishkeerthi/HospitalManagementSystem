@@ -6,12 +6,20 @@ import java.time.DateTimeException
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 
 val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
 
 fun String.getInt() = this.toIntOrNull() ?: -1
 
-fun String.getDate(): LocalDate = LocalDate.parse(this, formatter)
+fun String.getDate(): LocalDate?{
+    return try {
+        LocalDate.parse(this, formatter)
+    }
+    catch (e: DateTimeParseException){
+        null
+    }
+}
 
 fun Int.getGender() : Gender {
     return when(this){
@@ -35,7 +43,8 @@ fun Int.getDepartment() : Department {
         0 -> Department.DERMATOLOGY
         1 -> Department.ENT
         2 -> Department.OPHTHALMOLOGY
-        else -> Department.DERMATOLOGY
+        3 -> Department.GENERAL
+        else -> Department.GENERAL
     }
 }
 
@@ -59,13 +68,18 @@ fun Int.getMedicineType() : MedicineType{
         1 -> MedicineType.DROPS
         2 -> MedicineType.SYRUP
         3 -> MedicineType.INHALER
+        4 -> MedicineType.CREAM
         else -> MedicineType.TABLET
     }
 }
 
 fun enterField(field: String) : String{
     println("Enter $field:")
-    return readLine() ?: ""
+    val input = readLine() ?: ""
+    return if(input == "")
+        "Undefined"
+    else
+        input
 }
 
 fun enterTime(field: String): LocalTime? {
@@ -75,7 +89,7 @@ fun enterTime(field: String): LocalTime? {
     return getTime(hour, minutes, meridian)
 }
 
-fun String.isYes(): Boolean = this.lowercase() == "yes"
+fun String.isYes(): Boolean = this.lowercase().replace(" ", "") == "yes"
 
 fun getToday(): LocalDate = LocalDate.now()
 
