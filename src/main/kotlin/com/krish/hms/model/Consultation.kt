@@ -13,6 +13,6 @@ data class Consultation(
     var assessment: String
 ) {
     override fun toString(): String {
-        return "$consultationId|$caseId|$doctorId|$issue|$department|$visitDate|$assessment\n"
+        return "$consultationId|$caseId|$doctorId|$issue|${department.ordinal}|$visitDate|$assessment\n"
     }
 }

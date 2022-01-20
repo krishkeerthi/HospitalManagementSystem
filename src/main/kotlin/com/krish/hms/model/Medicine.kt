@@ -1,5 +1,7 @@
 package com.krish.hms.model
 
+import com.krish.hms.helper.intValue
+
 class Medicine(
     val medicineId: String,
     val consultationId: String,
@@ -12,6 +14,7 @@ class Medicine(
     val night: Boolean,
 ){
     override fun toString(): String {
-        return "$medicineId|$consultationId|$medicineName|$medicineType|$count|$days|$morning|$afternoon|$night"
+        return "$medicineId|$consultationId|$medicineName|${medicineType.ordinal}|$count|$days|" +
+                "${morning.intValue}|${afternoon.intValue}|${night.intValue}\n"
     }
 }

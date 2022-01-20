@@ -189,6 +189,8 @@ class HospitalFiles: IdGenerator by ZIdGen() {
                 LocalTime.parse(fields[11]), LocalTime.parse(fields[12]))
 
             doctors[fields[0]] = doctor
+
+            // Here DateTimeParseException is not handled, because we are assuming that only valid date is written in the file
         }
 
         //Processing Patient file
@@ -229,7 +231,7 @@ class HospitalFiles: IdGenerator by ZIdGen() {
         for(line in medicineFile){
             val fields = line.split("|")
             val medicine = Medicine(fields[0], fields[1], fields[2], fields[3].getInt().getMedicineType(), fields[4].getInt(),
-                fields[5].getInt(), fields[6].isYes(), fields[7].isYes(), fields[8].isYes())
+                fields[5].getInt(), fields[6].getInt().getBoolean(), fields[7].getInt().getBoolean(), fields[8].getInt().getBoolean())
 
             medicines[fields[0]] = medicine
             addOrCreate(consultationsMedicines, fields[1], fields[0])

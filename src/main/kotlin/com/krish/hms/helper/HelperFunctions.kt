@@ -115,3 +115,13 @@ fun getTime(hour: Int, minute: Int, meridian: Meridian): LocalTime?{
 
 fun getDefaultTime(): LocalTime = LocalTime.of(12, 0, 0)
 
+val Boolean.intValue : Int
+    get() = if(this) 1 else 0
+
+fun Int.getBoolean(): Boolean{
+    return when(this){
+        0 -> false
+        1 -> true
+        else -> false
+    }
+}

@@ -116,7 +116,7 @@ class HmsController {
             val type = enterField("1. Tablet 2. Drops 3. Syrup 4. Inhaler 5. Cream").getInt().minus(1).getMedicineType()
             val count = enterField("Count of usage").getInt()
             val days = enterField("No of days to continue").getInt()
-            val morning = enterField("Yes ro No for morning").isYes()
+            val morning = enterField("Yes or No for morning").isYes()
             val afternoon = enterField("Yes or No for afternoon").isYes()
             val night = enterField("Yes or No for night").isYes()
 
@@ -150,9 +150,10 @@ class HmsController {
     }
 
     private fun printDoctors(filteredDoctors:List<Doctor>){
-        println("Name   |   Department   | years of Experience")
+        println("Name  | Age | Gender | Department | years of Experience  | Avail time start  | Avail time end")
         for(doctor in filteredDoctors)
-            println("${doctor.name} ${doctor.department.name.lowercase()} ${doctor.yearsOfExperience}")
+            println("${doctor.name} ${doctor.age}  ${doctor.gender.name.lowercase()} ${doctor.department.name.lowercase()} " +
+                    "${doctor.yearsOfExperience} ${doctor.startTime}  ${doctor.endTime}")
     }
 
     private fun listPatients(){
@@ -176,9 +177,9 @@ class HmsController {
     }
 
     private fun printPatients(filteredPatients: List<Patient>){
-        println("Name   |   Age   |  Contact")
+        println("Name   |   Age   |  Gender  | First visit  | Last visit")
         for(patient in filteredPatients)
-            println("${patient.name} ${patient.age} ${patient.contact}")
+            println("${patient.name} ${patient.age} ${patient.gender.name.lowercase()}  ${patient.firstRegistered}  ${patient.lastRegistered}")
     }
 
     private fun listCase(){
@@ -197,16 +198,18 @@ class HmsController {
         for(consultationId in management.getConsultations(caseId)){
             if(management.isConsultationExists(consultationId)){
                 val consultation = management.getConsultation(consultationId)
-                println("Consultation id   |  Doctor id   |  Department   | Issue   | Assessment")
-                println("${consultation.consultationId} ${consultation.doctorId} ${consultation.department.name} ${consultation.issue} ${consultation.assessment}")
+                println("Consultation id   |  Doctor id   |  Department   | Issue   |  Visit date |  Assessment")
+                println("${consultation.consultationId} ${consultation.doctorId} ${consultation.department.name.lowercase()} ${consultation.issue} " +
+                        "${consultation.visitDate}  ${consultation.assessment}")
 
                 if(management.isConsultationMedicinesAvailable(consultationId)){
                     for(medicineId in management.getMedicines(consultationId)){  //Check
                         if(management.isMedicineExists(medicineId)){
                             val medicine = management.getMedicine(medicineId)  //check
 
-                            println("Medicine name  |  Medicine type  |  count   | days")
-                            println("${medicine.medicineName}  ${medicine.medicineType.name} ${medicine.count} ${medicine.days}")
+                            println("Medicine name  |  Medicine type  |  count   | days  | morning | Afternoon | Evening")
+                            println("${medicine.medicineName}  ${medicine.medicineType.name.lowercase()} ${medicine.count} ${medicine.days}" +
+                                    " ${medicine.morning}  ${medicine.afternoon}  ${medicine.night}")
                         }
                     }
                 }

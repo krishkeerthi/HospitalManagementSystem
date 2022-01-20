@@ -17,6 +17,7 @@ class Patient(
     var lastRegistered: LocalDate
     ) : Person(name, age, gender, dob, address, contact, bloodGroup, Ssn){
 
-    override fun toString() = "$patientId|$name|$age|$gender|$dob|$address|$contact|$bloodGroup|$Ssn|$firstRegistered|$lastRegistered\n"
+    override fun toString() = "$patientId|$name|$age|${gender.ordinal}|$dob|$address|$contact|${bloodGroup.ordinal}|" +
+            "$Ssn|$firstRegistered|$lastRegistered\n"
 
 }
